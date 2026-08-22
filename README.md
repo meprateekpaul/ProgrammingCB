@@ -11,12 +11,16 @@ The curriculum is divided into **Exercises** for students to practice and **Solu
 
 ### 📝 Exercises (`Notebooks/Exercises/`)
 - **[Tutorial 1: BioComputing Basics](Notebooks/Exercises/Tutorial_1_BioComputing_Basics.ipynb)** - Fundamental Python concepts applied to basic biological strings (DNA/RNA sequences, GC content, transcription).
+- **[Tutorial 2: Sequence Alignment Basics](Notebooks/Exercises/Tutorial_2_Sequence_Alignment.ipynb)** - Fundamental concepts in alignment scoring matrices, Hamming distances, and dynamic programming basics.
 - **[Tutorial 3: BioComputing Intermediate](Notebooks/Exercises/Tutorial_3_BioComputing_Intermediate.ipynb)** - Intermediate data structures, working with proteomics data, codon translation, and identifying mutations.
+- **[Tutorial 4: FASTA & FASTQ Parsers](Notebooks/Exercises/Tutorial_4_FASTA_FASTQ.ipynb)** - File handling in bioinformatics; building custom parsers and Phred quality score calculators.
 - **[Tutorial 5: Biological Databases](Notebooks/Exercises/Tutorial_5_Biological_Databases.ipynb)** - Fetching and interacting with structural biological data (e.g., Protein Data Bank).
 
 ### 💡 Solutions (`Notebooks/Solutions/`)
 - **[Tutorial 1 Solutions](Notebooks/Solutions/Tutorial_1_BioComputing_Basics_Solutions.ipynb)** - Complete code solutions for the Basics tutorial.
+- **[Tutorial 2 Solutions](Notebooks/Solutions/Tutorial_2_Sequence_Alignment_Solutions.ipynb)** - Detailed explanations and code for alignment scoring.
 - **[Tutorial 3 Solutions](Notebooks/Solutions/Tutorial_3_BioComputing_Intermediate_Solutions.ipynb)** - Complete code solutions for the Intermediate tutorial.
+- **[Tutorial 4 Solutions](Notebooks/Solutions/Tutorial_4_FASTA_FASTQ_Solutions.ipynb)** - Detailed explanations and code for FASTA/FASTQ parsing.
 
 ## 🚀 Getting Started
 

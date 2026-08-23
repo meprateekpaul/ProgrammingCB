@@ -1,0 +1,8 @@
+EGFR, or epidermal growth factor receptor, is a protein that's found on certain cells and is involved in cell growth and survival. Mutations in the EGFR gene can cause cancer cells to grow and spread, which can lead to cancer. EGFR mutations are common in non-small cell lung cancer (NSCLC). 
+Here's some more information about EGFR and cancer: 
+Treatment
+Drugs that block EGFR proteins are used to treat some types of cancer. Treatments for EGFR-positive lung cancer may include chemotherapy, radiation therapy, immunotherapy, surgery, and targeted therapy. 
+Side effects
+Common side effects of EGFR inhibitors include diarrhea, loss of appetite, mouth sores, rash on the face and chest, and skin infections. 
+Prevalence
+EGFR mutations are more common in women than men, and in people who have never smoked or have been light smokers. 

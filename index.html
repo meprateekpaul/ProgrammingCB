@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Programming for Computational Biology - A comprehensive, hands-on university curriculum in Python, Biopython, OOP, Biological Visualization, and Web Scraping.">
+    <meta name="author" content="Prateek Paul">
+    <title>Programming for Computational Biology (PCB) | Prateek Paul</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bio: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            900: '#14532d',
+                        },
+                        tech: {
+                            50: '#f0f9ff',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        amberbio: '#f59e0b',
+                        coral: '#E9724C'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['Fira Code', 'Courier New', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        html { scroll-behavior: smooth; }
+        .hero-mesh {
+            background-color: #0b132b;
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(14, 165, 233, 0.25) 0px, transparent 50%),
+                radial-gradient(at 85% 15%, rgba(34, 197, 94, 0.22) 0px, transparent 50%),
+                radial-gradient(at 50% 80%, rgba(233, 114, 76, 0.2) 0px, transparent 50%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .glass-card-light {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .code-pill {
+            font-family: 'Fira Code', monospace;
+        }
+        .filter-btn.active {
+            background-color: #16a34a;
+            color: #ffffff;
+            box-shadow: 0 4px 14px 0 rgba(22, 163, 74, 0.39);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="flex items-center space-x-2 text-emerald-400 font-bold text-xl tracking-tight hover:text-emerald-300 transition">
+                        <i class="fa-solid fa-dna text-2xl"></i>
+                        <span>PCB <span class="text-xs font-normal text-slate-400">· Programming for CompBio</span></span>
+                    </a>
+                </div>
+                
+                <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                    <a href="#about" class="text-slate-300 hover:text-white transition">Overview</a>
+                    <a href="#thread" class="text-slate-300 hover:text-white transition">Biological Thread</a>
+                    <a href="#modules" class="text-slate-300 hover:text-white transition">Curriculum</a>
+                    <a href="#datasets" class="text-slate-300 hover:text-white transition">Data Provenance</a>
+                    <a href="#assessments" class="text-slate-300 hover:text-white transition">Assessments</a>
+                    <a href="index.html" class="text-emerald-400 hover:text-emerald-300 flex items-center space-x-1 transition">
+                        <i class="fa-solid fa-arrow-left text-xs"></i>
+                        <span>Portfolio</span>
+                    </a>
+                </nav>
+                
+                <div class="flex items-center space-x-3">
+                    <a href="https://github.com/meprateekpaul/ProgrammingCB" target="_blank" rel="noopener" class="inline-flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-white px-3.5 py-1.5 rounded-lg text-sm font-medium border border-slate-700 transition">
+                        <i class="fa-brands fa-github text-base"></i>
+                        <span class="hidden sm:inline">GitHub Repo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-mesh text-white pt-20 pb-24 border-b border-slate-800 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <!-- Badges Row -->
+                <div class="flex flex-wrap items-center gap-2 mb-6 text-xs">
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-full font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                        <i class="fa-solid fa-book-bookmark mr-1.5"></i> 43 Jupyter Notebooks
+                    </span>
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-full font-medium bg-sky-500/20 text-sky-300 border border-sky-500/30">
+                        <i class="fa-brands fa-python mr-1.5"></i> Python 3.10+ & Biopython 1.83+
+                    </span>
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-full font-medium bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                        <i class="fa-solid fa-circle-check mr-1.5"></i> CI Tested (nbval & pytest)
+                    </span>
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-full font-medium bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                        <i class="fa-solid fa-certificate mr-1.5"></i> MIT Open License
+                    </span>
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                    Programming for <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-sky-400">
+                        Computational Biology
+                    </span>
+                </h1>
+                
+                <p class="text-lg sm:text-xl text-slate-300 mb-8 leading-relaxed font-light">
+                    A comprehensive, university-grade scientific computing curriculum. Bridging foundational Python mechanics, object-oriented sequence modeling, high-throughput file parsing (FASTA, FASTQ, GenBank), publication data visualization, programmatic REST database mining, polite web scraping, and vectorized biological data science.
+                </p>
+
+                <!-- Action CTAs -->
+                <div class="flex flex-wrap items-center gap-4">
+                    <a href="#modules" class="inline-flex items-center justify-center space-x-2 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-6 py-3 rounded-xl shadow-lg shadow-emerald-500/25 transition">
+                        <i class="fa-solid fa-laptop-code"></i>
+                        <span>Explore 43 Notebooks</span>
+                    </a>
+                    
+                    <a href="https://github.com/meprateekpaul/ProgrammingCB" target="_blank" rel="noopener" class="inline-flex items-center justify-center space-x-2 bg-slate-800/80 hover:bg-slate-700/80 text-white font-medium px-6 py-3 rounded-xl border border-slate-700 transition">
+                        <i class="fa-brands fa-github text-lg"></i>
+                        <span>View Source on GitHub</span>
+                    </a>
+
+                    <a href="https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/M00_Setup/M00_Setup_and_Orientation.ipynb" target="_blank" rel="noopener" class="inline-flex items-center justify-center space-x-2 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-medium px-5 py-3 rounded-xl border border-amber-500/40 transition">
+                        <i class="fa-solid fa-play text-sm"></i>
+                        <span>Launch M00 in Colab</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative background elements -->
+        <div class="absolute -right-24 -bottom-24 w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
+        <div class="absolute right-1/4 top-10 w-80 h-80 rounded-full bg-sky-500/10 blur-3xl pointer-events-none"></div>
+    </section>
+
+    <!-- Quick Stats Bar -->
+    <div class="bg-slate-900 border-b border-slate-800 text-slate-300 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="border-r border-slate-800 last:border-none">
+                    <div class="text-3xl font-extrabold text-emerald-400">43</div>
+                    <div class="text-xs uppercase tracking-wider text-slate-400 mt-1">Jupyter Notebooks</div>
+                    <div class="text-[11px] text-slate-500">(22 Exercises + 21 Solutions)</div>
+                </div>
+                <div class="border-r border-slate-800 last:border-none">
+                    <div class="text-3xl font-extrabold text-sky-400">7</div>
+                    <div class="text-xs uppercase tracking-wider text-slate-400 mt-1">Core Modules</div>
+                    <div class="text-[11px] text-slate-500">M00 through M06 + Capstone</div>
+                </div>
+                <div class="border-r border-slate-800 last:border-none">
+                    <div class="text-3xl font-extrabold text-amber-400">20+</div>
+                    <div class="text-xs uppercase tracking-wider text-slate-400 mt-1">Curated Datasets</div>
+                    <div class="text-[11px] text-slate-500">FASTA, FASTQ, GenBank, PDB, CSV</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-extrabold text-purple-400">100%</div>
+                    <div class="text-xs uppercase tracking-wider text-slate-400 mt-1">Automated Validation</div>
+                    <div class="text-[11px] text-slate-500">Self-testing Assert Cells</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section: Biological Continuity Thread -->
+    <section id="thread" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs uppercase font-bold tracking-widest text-emerald-600 mb-2">Pedagogical Philosophy</h2>
+                <h3 class="text-3xl font-bold text-slate-900 tracking-tight">The Continuous Biological Thread</h3>
+                <p class="text-slate-600 mt-3 text-base">
+                    Rather than isolated, disposable toy problems, students follow four canonical biological entities across the entire semester—witnessing how representation evolves from raw text strings to object hierarchies, interactive 3D structures, and genomic data frames.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Thread 1: TP53 -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-emerald-500/50 hover:shadow-lg transition">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl mb-4 font-bold">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-1">Human TP53</h4>
+                    <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Tumor Suppressor</span>
+                    <p class="text-sm text-slate-600 mt-3">
+                        Guardian of the genome. Analyzed through mRNA translation (M01), GenBank feature annotation (M02), mutation hot-spot modeling (M03), PDB 1TUP 3D structure contact maps (M05B), and differential expression volcano plots (M04/M06).
+                    </p>
+                </div>
+
+                <!-- Thread 2: Insulin -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-sky-500/50 hover:shadow-lg transition">
+                    <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center text-xl mb-4 font-bold">
+                        <i class="fa-solid fa-syringe"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-1">Human INS</h4>
+                    <span class="text-xs font-semibold px-2 py-0.5 rounded bg-sky-100 text-sky-800">Peptide Hormone</span>
+                    <p class="text-sm text-slate-600 mt-3">
+                        Preproprotein cleavage mechanics. Dissected via signal peptides, B-chain, C-peptide, and A-chain proteolytic maturation. Tracks UniProt REST record harvesting (M05B) and post-translational disulfide bond verification.
+                    </p>
+                </div>
+
+                <!-- Thread 3: HBB -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-amber-500/50 hover:shadow-lg transition">
+                    <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl mb-4 font-bold">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-1">Human HBB</h4>
+                    <span class="text-xs font-semibold px-2 py-0.5 rounded bg-amber-100 text-amber-800">Oxygen Transport</span>
+                    <p class="text-sm text-slate-600 mt-3">
+                        Hemoglobin subunit beta. Ground zero for variant modeling: students compute the clinical Glu6Val (HbS sickle cell) missense mutation, string hamming distance, and restriction enzyme digest site alteration.
+                    </p>
+                </div>
+
+                <!-- Thread 4: lacZ -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-purple-500/50 hover:shadow-lg transition">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center text-xl mb-4 font-bold">
+                        <i class="fa-solid fa-bacteria"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-1">E. coli lacZ</h4>
+                    <span class="text-xs font-semibold px-2 py-0.5 rounded bg-purple-100 text-purple-800">Bacterial Operon</span>
+                    <p class="text-sm text-slate-600 mt-3">
+                        The archetypal prokaryotic gene regulation circuit. Students extract the polycistronic lac operon from complete bacterial genomes, parse regulatory operator regions, and translate the 1,024-amino-acid β-galactosidase polypeptide.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Curriculum & Module Catalog -->
+    <section id="modules" class="py-16 bg-slate-100 flex-grow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+                <div>
+                    <h2 class="text-xs uppercase font-bold tracking-widest text-emerald-600 mb-2">Detailed Syllabus</h2>
+                    <h3 class="text-3xl font-bold text-slate-900 tracking-tight">Curriculum & Interactive Notebooks</h3>
+                    <p class="text-slate-600 mt-2 text-sm max-w-2xl">
+                        Filter by topic area or explore all modules. Each card links to both the student exercise notebook (with TODO templates and assertion cells) and the fully worked reference solution.
+                    </p>
+                </div>
+                
+                <!-- Filter buttons -->
+                <div class="mt-4 md:mt-0 flex flex-wrap gap-2 text-xs font-semibold" id="filter-container">
+                    <button class="filter-btn active px-3.5 py-1.5 rounded-lg bg-white text-slate-700 border border-slate-300 transition" onclick="filterModules('all', this)">All (8)</button>
+                    <button class="filter-btn px-3.5 py-1.5 rounded-lg bg-white text-slate-700 border border-slate-300 transition" onclick="filterModules('basics', this)">Basics & Files</button>
+                    <button class="filter-btn px-3.5 py-1.5 rounded-lg bg-white text-slate-700 border border-slate-300 transition" onclick="filterModules('oop', this)">OOP</button>
+                    <button class="filter-btn px-3.5 py-1.5 rounded-lg bg-white text-slate-700 border border-slate-300 transition" onclick="filterModules('viz', this)">Visualisation</button>
+                    <button class="filter-btn px-3.5 py-1.5 rounded-lg bg-white text-slate-700 border border-slate-300 transition" onclick="filterModules('db', this)">Databases & Scraping</button>
+                    <button class="filter-btn px-3.5 py-1.5 rounded-lg bg-white text-slate-700 border border-slate-300 transition" onclick="filterModules('datascience', this)">Data Science & Capstone</button>
+                </div>
+            </div>
+
+            <!-- Modules Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="module-cards">
+
+                <!-- M00: Setup -->
+                <div class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between" data-category="basics">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">Module 00</span>
+                            <span class="text-xs text-amber-600 font-semibold">★☆☆ (60 min)</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Setup & Orientation</h4>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                            Conda environment construction (`pcb`), VS Code configuration, JupyterLab extensions, and Google Colab cloud execution setup.
+                        </p>
+                        <div class="bg-slate-50 rounded-xl p-3 mb-4 text-xs space-y-1.5 border border-slate-100">
+                            <div class="font-semibold text-slate-700 mb-1">Key Notebook:</div>
+                            <div class="flex items-center justify-between text-slate-600">
+                                <span>M00 Setup & Orientation</span>
+                                <span class="text-[11px] text-emerald-600 font-medium">33 cells</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <a href="https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/M00_Setup/M00_Setup_and_Orientation.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 text-xs font-semibold text-amber-600 hover:text-amber-700">
+                            <i class="fa-solid fa-play text-[10px]"></i>
+                            <span>Open in Colab</span>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/blob/main/modules/M00_Setup/M00_Setup_and_Orientation.ipynb" target="_blank" class="text-xs font-medium text-slate-600 hover:text-slate-900">
+                            View on GitHub <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- M01: Python Basics & Sequences -->
+                <div class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between" data-category="basics">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800">Module 01</span>
+                            <span class="text-xs text-amber-600 font-semibold">★★☆ (10 Notebooks)</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Python Basics & Sequences</h4>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                            Variables, GC content, transcription, 6-frame translation, open reading frames (ORFs), splicing exons, and global/local pairwise alignment (Needleman-Wunsch).
+                        </p>
+                        <div class="bg-slate-50 rounded-xl p-3 mb-4 text-xs space-y-1 text-slate-600 border border-slate-100">
+                            <div>• <strong>1A:</strong> Core Python (20 exercises, 127 cells)</div>
+                            <div>• <strong>1B:</strong> Sequence Manipulation (15 exercises)</div>
+                            <div>• <strong>1C:</strong> ORFs, Exons & Introns (10 exercises)</div>
+                            <div>• <strong>1D:</strong> 15 Applied Biology Practice Problems</div>
+                            <div>• <strong>1E:</strong> Dynamic Programming Alignment (NW/SW)</div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <a href="https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/M01_Python_Basics/M01A_Core_Python.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 text-xs font-semibold text-amber-600 hover:text-amber-700">
+                            <i class="fa-solid fa-play text-[10px]"></i>
+                            <span>Colab 1A</span>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/tree/main/modules/M01_Python_Basics" target="_blank" class="text-xs font-medium text-slate-600 hover:text-slate-900">
+                            Module Folder <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- M02: File Handling & Biopython -->
+                <div class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between" data-category="basics">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800">Module 02</span>
+                            <span class="text-xs text-amber-600 font-semibold">★★☆ (6 Notebooks)</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">File Handling & Biopython</h4>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                            Parsing FASTA and FASTQ without libraries, generator memory efficiency, and Biopython's `SeqIO` on complex GenBank records (features, CDS translations).
+                        </p>
+                        <div class="bg-slate-50 rounded-xl p-3 mb-4 text-xs space-y-1 text-slate-600 border border-slate-100">
+                            <div>• <strong>2A:</strong> Reading/Writing Text Files & Safe I/O</div>
+                            <div>• <strong>2B:</strong> Hand-crafted FASTA/FASTQ Parsers</div>
+                            <div>• <strong>2C:</strong> Biopython SeqIO on TP53 & lac operon</div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <a href="https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/M02_File_Handling/M02C_Biopython_SeqIO_GenBank.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 text-xs font-semibold text-amber-600 hover:text-amber-700">
+                            <i class="fa-solid fa-play text-[10px]"></i>
+                            <span>Colab 2C</span>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/tree/main/modules/M02_File_Handling" target="_blank" class="text-xs font-medium text-slate-600 hover:text-slate-900">
+                            Module Folder <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- M03: OOP -->
+                <div class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between" data-category="oop">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-sky-100 text-sky-800">Module 03</span>
+                            <span class="text-xs text-amber-600 font-semibold">★★★ (6 Notebooks)</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Object-Oriented Programming</h4>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                            Classes, dunder methods (`__repr__`, `__len__`, `__eq__`), 4 OOP pillars (Inheritance, Polymorphism, Encapsulation, Abstraction), `@property`, and domain modeling.
+                        </p>
+                        <div class="bg-slate-50 rounded-xl p-3 mb-4 text-xs space-y-1 text-slate-600 border border-slate-100">
+                            <div>• <strong>3A:</strong> `Sequence`, `DNASequence`, `ProteinSequence`</div>
+                            <div>• <strong>3B:</strong> Public/Protected/Private & Abstract Base Classes</div>
+                            <div>• <strong>3C:</strong> 12 Practice Questions + Biological Toolkit Mini-Project</div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <a href="https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/M03_OOP/M03A_Classes_and_Objects.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 text-xs font-semibold text-amber-600 hover:text-amber-700">
+                            <i class="fa-solid fa-play text-[10px]"></i>
+                            <span>Colab 3A</span>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/tree/main/modules/M03_OOP" target="_blank" class="text-xs font-medium text-slate-600 hover:text-slate-900">
+                            Module Folder <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- M04: Visualisation -->
+                <div class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between" data-category="viz">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-purple-100 text-purple-800">Module 04</span>
+                            <span class="text-xs text-amber-600 font-semibold">★★☆ (6 Notebooks)</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Biological Data Visualisation</h4>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                            Chart selection matrix, colorblind palettes, Matplotlib object-oriented plotting, Seaborn publication themes, volcano plots, and hierarchical clustermaps.
+                        </p>
+                        <div class="bg-slate-50 rounded-xl p-3 mb-4 text-xs space-y-1 text-slate-600 border border-slate-100">
+                            <div>• <strong>4A:</strong> Plot Theory, Bad Plots & Colorblind Palettes</div>
+                            <div>• <strong>4B:</strong> Matplotlib (Bar, Hist, Donut, Box, Violin, Heatmap)</div>
+                            <div>• <strong>4C:</strong> Seaborn, Tidy Data, Volcano Plot & Clustermap</div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <a href="https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/M04_Visualisation/M04B_Matplotlib.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 text-xs font-semibold text-amber-600 hover:text-amber-700">
+                            <i class="fa-solid fa-play text-[10px]"></i>
+                            <span>Colab 4B</span>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/tree/main/modules/M04_Visualisation" target="_blank" class="text-xs font-medium text-slate-600 hover:text-slate-900">
+                            Module Folder <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- M05: Databases & Web Scraping -->
+                <div class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between" data-category="db">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-rose-100 text-rose-800">Module 05</span>
+                            <span class="text-xs text-amber-600 font-semibold">★★★ (10 Notebooks)</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Databases & Polite Web Scraping</h4>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                            NCBI Entrez E-utilities, UniProt/PDB/KEGG REST APIs, SMCRA hierarchy, `.env` secrets management, rate limiting, BeautifulSoup parsing, and ethical harvesting.
+                        </p>
+                        <div class="bg-slate-50 rounded-xl p-3 mb-4 text-xs space-y-1 text-slate-600 border border-slate-100">
+                            <div>• <strong>5A:</strong> NCBI Entrez, GenBank & PubMed Mining</div>
+                            <div>• <strong>5B:</strong> UniProt, Bio.PDB (1TUP), and KEGG Pathways</div>
+                            <div>• <strong>5C:</strong> API Keys, Exponential Backoff & Secrets</div>
+                            <div>• <strong>5D:</strong> Scraping Fundamentals (Robots.txt, BS4)</div>
+                            <div>• <strong>5E:</strong> Web Scraping Homework (6 Capstone Tasks)</div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <a href="https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/M05_Databases_and_Scraping/M05A_Entrez_GenBank_PubMed.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 text-xs font-semibold text-amber-600 hover:text-amber-700">
+                            <i class="fa-solid fa-play text-[10px]"></i>
+                            <span>Colab 5A</span>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/tree/main/modules/M05_Databases_and_Scraping" target="_blank" class="text-xs font-medium text-slate-600 hover:text-slate-900">
+                            Module Folder <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- M06: os, NumPy, pandas -->
+                <div class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between" data-category="datascience">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-teal-100 text-teal-800">Module 06</span>
+                            <span class="text-xs text-amber-600 font-semibold">★★★ (Graded Assignment)</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">os, NumPy & pandas</h4>
+                        <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+                            Vectorized biological computing: position weight matrices (PWM), information content logos, strided k-mer counting, Ti/Tv ratios, multi-index pivoting, and gene ontology enrichment.
+                        </p>
+                        <div class="bg-slate-50 rounded-xl p-3 mb-4 text-xs space-y-1 text-slate-600 border border-slate-100">
+                            <div>• 17 Graded, rigorous data science tasks</div>
+                            <div>• Vectorized matrix transformations</div>
+                            <div>• Complete regression unit test assertions</div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <a href="https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/M06_os_NumPy_pandas/M06_Assignment.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 text-xs font-semibold text-amber-600 hover:text-amber-700">
+                            <i class="fa-solid fa-play text-[10px]"></i>
+                            <span>Colab M06</span>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/tree/main/modules/M06_os_NumPy_pandas" target="_blank" class="text-xs font-medium text-slate-600 hover:text-slate-900">
+                            Module Folder <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Capstone -->
+                <div class="module-card bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col justify-between md:col-span-2 lg:col-span-2" data-category="datascience">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800">Capstone Project</span>
+                            <span class="text-xs text-amber-600 font-semibold">★★★ (Comprehensive Pipeline)</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Automated Biological Gene Report Pipeline</h4>
+                        <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                            An end-to-end bioinformatics engine. Ingests a gene accession, queries Entrez/UniProt/PDB, calculates physicochemical properties, analyzes 1TUP residue contact networks, and generates publication Markdown and interactive HTML Gene Cards.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-slate-50 rounded-xl p-3 mb-4 text-xs text-slate-600 border border-slate-100">
+                            <div><strong>Step 1–3:</strong> Ingestion, Validation & GenBank Feature Dissection</div>
+                            <div><strong>Step 4–6:</strong> PDB 1TUP Distance Matrix & Major Groove Residues</div>
+                            <div><strong>Step 7–9:</strong> Interactive HTML Card & Automated CLI Runner</div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <a href="https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/Capstone/Capstone_Gene_Report_Pipeline.ipynb" target="_blank" class="inline-flex items-center space-x-1.5 text-xs font-semibold text-amber-600 hover:text-amber-700">
+                            <i class="fa-solid fa-play text-[10px]"></i>
+                            <span>Launch Capstone in Colab</span>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/tree/main/modules/Capstone" target="_blank" class="text-xs font-medium text-slate-600 hover:text-slate-900">
+                            View Pipeline Code <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Datasets & Provenance -->
+    <section id="datasets" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs uppercase font-bold tracking-widest text-emerald-600 mb-2">Reproducibility & FAir Data</h2>
+                <h3 class="text-3xl font-bold text-slate-900 tracking-tight">Curated Biological Datasets</h3>
+                <p class="text-slate-600 mt-2 text-sm">
+                    All datasets are archived in the repository with programmatic provenance documented in <code class="text-emerald-700 bg-emerald-50 px-1 py-0.5 rounded">data/README.md</code>. Generated or downloaded via <code class="text-emerald-700 bg-emerald-50 px-1 py-0.5 rounded">data/build_data.py</code>.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
+                <div class="p-5 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="text-emerald-600 text-lg mb-2"><i class="fa-solid fa-dna"></i></div>
+                    <div class="font-bold text-slate-900 mb-1">Sequences (`data/sequences/`)</div>
+                    <ul class="text-xs text-slate-600 space-y-1">
+                        <li>• `tp53_human_mrna.fasta` (NM_000546.6)</li>
+                        <li>• `multi_sample.fasta` (multi-species TP53)</li>
+                        <li>• `reads_small.fastq` (Illumina reads + Phred)</li>
+                        <li>• `toy_gene_with_introns.txt`</li>
+                    </ul>
+                </div>
+
+                <div class="p-5 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="text-sky-600 text-lg mb-2"><i class="fa-solid fa-file-code"></i></div>
+                    <div class="font-bold text-slate-900 mb-1">GenBank (`data/genbank/`)</div>
+                    <ul class="text-xs text-slate-600 space-y-1">
+                        <li>• `tp53_human.gb` (RefSeq NG_017013.2)</li>
+                        <li>• `ecoli_lac_operon.gb` (lacZYA operon)</li>
+                        <li>• `insulin_protein.gp` (GenPept AAA59172.1)</li>
+                    </ul>
+                </div>
+
+                <div class="p-5 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="text-purple-600 text-lg mb-2"><i class="fa-solid fa-cube"></i></div>
+                    <div class="font-bold text-slate-900 mb-1">Structures (`data/structures/`)</div>
+                    <ul class="text-xs text-slate-600 space-y-1">
+                        <li>• `1tup.pdb` (p53 core bound to DNA)</li>
+                        <li>• `1tup.cif` (mmCIF coordinate model)</li>
+                        <li>• Chains B & C contact DNA groove &lt;4.5 Å</li>
+                    </ul>
+                </div>
+
+                <div class="p-5 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="text-amber-600 text-lg mb-2"><i class="fa-solid fa-table"></i></div>
+                    <div class="font-bold text-slate-900 mb-1">Tables (`data/tables/`)</div>
+                    <ul class="text-xs text-slate-600 space-y-1">
+                        <li>• `differential_expression.csv` (Volcano plot)</li>
+                        <li>• `expression_matrix.csv` (Heatmaps)</li>
+                        <li>• `genes_per_chromosome.csv`</li>
+                        <li>• `expression_tissues.csv` (Violin plots)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Assessments & Cheatsheets -->
+    <section id="assessments" class="py-16 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Assessments Box -->
+                <div>
+                    <h2 class="text-xs uppercase font-bold tracking-widest text-emerald-600 mb-2">Grading & Evaluation</h2>
+                    <h3 class="text-2xl font-bold text-slate-900 tracking-tight mb-4">Quizzes & Evaluation Rubrics</h3>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                        The repository provides turnkey assessment tools designed for semester-long university delivery:
+                    </p>
+                    <div class="space-y-3 text-sm">
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/blob/main/assessments/quizzes/Quiz_1.md" target="_blank" class="flex items-center justify-between p-3.5 bg-white rounded-xl border border-slate-200 hover:border-emerald-500 transition shadow-sm">
+                            <span class="font-semibold text-slate-800"><i class="fa-solid fa-circle-question text-emerald-600 mr-2"></i> Quiz 1: Python Basics & File Handling</span>
+                            <span class="text-xs text-slate-500">MCQ + Code Analysis</span>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/blob/main/assessments/quizzes/Quiz_2.md" target="_blank" class="flex items-center justify-between p-3.5 bg-white rounded-xl border border-slate-200 hover:border-emerald-500 transition shadow-sm">
+                            <span class="font-semibold text-slate-800"><i class="fa-solid fa-circle-question text-emerald-600 mr-2"></i> Quiz 2: OOP & Data Visualisation</span>
+                            <span class="text-xs text-slate-500">10 Questions + Keys</span>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/blob/main/assessments/rubrics/Rubric_Lab.md" target="_blank" class="flex items-center justify-between p-3.5 bg-white rounded-xl border border-slate-200 hover:border-emerald-500 transition shadow-sm">
+                            <span class="font-semibold text-slate-800"><i class="fa-solid fa-scale-balanced text-sky-600 mr-2"></i> Weekly Lab Session Grading Rubric</span>
+                            <span class="text-xs text-slate-500">20 Points Scale</span>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/blob/main/assessments/rubrics/Rubric_Homework.md" target="_blank" class="flex items-center justify-between p-3.5 bg-white rounded-xl border border-slate-200 hover:border-emerald-500 transition shadow-sm">
+                            <span class="font-semibold text-slate-800"><i class="fa-solid fa-scale-balanced text-sky-600 mr-2"></i> M05E Web Scraping Homework Rubric</span>
+                            <span class="text-xs text-slate-500">Ethics + Code</span>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/blob/main/assessments/rubrics/Rubric_Capstone.md" target="_blank" class="flex items-center justify-between p-3.5 bg-white rounded-xl border border-slate-200 hover:border-emerald-500 transition shadow-sm">
+                            <span class="font-semibold text-slate-800"><i class="fa-solid fa-scale-balanced text-sky-600 mr-2"></i> Capstone Gene Report Pipeline Rubric</span>
+                            <span class="text-xs text-slate-500">100 Points Scale</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cheatsheets Box -->
+                <div>
+                    <h2 class="text-xs uppercase font-bold tracking-widest text-emerald-600 mb-2">Student Aids</h2>
+                    <h3 class="text-2xl font-bold text-slate-900 tracking-tight mb-4">1-Page Module Cheatsheets</h3>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                        Printable markdown quick-reference sheets featuring core syntax tables, common gotchas, and typical computational biology recipes:
+                    </p>
+                    <div class="grid grid-cols-2 gap-3 text-sm">
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/blob/main/cheatsheets/M01_Cheatsheet.md" target="_blank" class="p-3 bg-white rounded-xl border border-slate-200 hover:border-emerald-500 transition shadow-sm">
+                            <div class="font-bold text-slate-800">M01 Cheatsheet</div>
+                            <div class="text-xs text-slate-500">String slicing, translation, GC</div>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/blob/main/cheatsheets/M02_Cheatsheet.md" target="_blank" class="p-3 bg-white rounded-xl border border-slate-200 hover:border-emerald-500 transition shadow-sm">
+                            <div class="font-bold text-slate-800">M02 Cheatsheet</div>
+                            <div class="text-xs text-slate-500">SeqIO, FASTA & GenBank parsers</div>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/blob/main/cheatsheets/M03_Cheatsheet.md" target="_blank" class="p-3 bg-white rounded-xl border border-slate-200 hover:border-emerald-500 transition shadow-sm">
+                            <div class="font-bold text-slate-800">M03 Cheatsheet</div>
+                            <div class="text-xs text-slate-500">OOP pillars, dunder methods</div>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/blob/main/cheatsheets/M04_Cheatsheet.md" target="_blank" class="p-3 bg-white rounded-xl border border-slate-200 hover:border-emerald-500 transition shadow-sm">
+                            <div class="font-bold text-slate-800">M04 Cheatsheet</div>
+                            <div class="text-xs text-slate-500">Matplotlib OO & Seaborn themes</div>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/blob/main/cheatsheets/M05_Cheatsheet.md" target="_blank" class="p-3 bg-white rounded-xl border border-slate-200 hover:border-emerald-500 transition shadow-sm">
+                            <div class="font-bold text-slate-800">M05 Cheatsheet</div>
+                            <div class="text-xs text-slate-500">Entrez, UniProt, PDB & BS4</div>
+                        </a>
+                        <a href="https://github.com/meprateekpaul/ProgrammingCB/blob/main/cheatsheets/M06_Cheatsheet.md" target="_blank" class="p-3 bg-white rounded-xl border border-slate-200 hover:border-emerald-500 transition shadow-sm">
+                            <div class="font-bold text-slate-800">M06 Cheatsheet</div>
+                            <div class="text-xs text-slate-500">NumPy vectorized & pandas indexing</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <div class="flex items-center space-x-2 text-white font-bold text-lg mb-1">
+                        <i class="fa-solid fa-dna text-emerald-400"></i>
+                        <span>Programming for Computational Biology</span>
+                    </div>
+                    <p class="text-xs text-slate-400">
+                        Authored and maintained by <strong>Prateek Paul</strong> · Ph.D. Researcher in Computational Biology at IIIT Delhi.
+                    </p>
+                </div>
+
+                <div class="flex items-center space-x-6 text-slate-400 text-lg">
+                    <a href="index.html" class="hover:text-emerald-400 transition" title="Portfolio"><i class="fa-solid fa-house"></i></a>
+                    <a href="https://github.com/meprateekpaul/ProgrammingCB" target="_blank" rel="noopener" class="hover:text-white transition" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://linkedin.com/in/prateekpaulpro" target="_blank" rel="noopener" class="hover:text-sky-400 transition" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:meprateekpaul@gmail.com" class="hover:text-emerald-400 transition" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+                Distributed under the MIT License · Open educational resource for the computational biology community.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Filtering Script -->
+    <script>
+        function filterModules(category, btnElement) {
+            // Update active button styling
+            const buttons = document.querySelectorAll('#filter-container .filter-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            if (btnElement) {
+                btnElement.classList.add('active');
+            }
+
+            // Filter cards
+            const cards = document.querySelectorAll('#module-cards .module-card');
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+name: pcb
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.10
+  - jupyterlab
+  - biopython>=1.83
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - requests
+  - beautifulsoup4
+  - lxml
+  - python-dotenv
+  - pytest
+  - pip
+  - pip:
+      - mechanicalsoup
+      - nbval

@@ -1,0 +1,15 @@
+python>=3.10
+jupyterlab
+biopython>=1.83
+numpy
+pandas
+matplotlib
+seaborn
+requests
+beautifulsoup4
+lxml
+mechanicalsoup
+python-dotenv
+nbval
+pytest
+scipy

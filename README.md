@@ -1,60 +1,133 @@
-# Programming for Computational Biology 🧬💻
+# Programming for Computational Biology (PCB) — Python 🧬💻
 
-[![Python](https://img.shields.io/badge/Python-3.7%2B-blue.svg)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Biopython](https://img.shields.io/badge/Biopython-1.83%2B-green.svg)](https://biopython.org/)
+[![CI: Test Solution Notebooks](https://github.com/meprateekpaul/ProgrammingCB/actions/workflows/test-notebooks.yml/badge.svg)](https://github.com/meprateekpaul/ProgrammingCB/actions/workflows/test-notebooks.yml)
 
-Welcome to the **Programming for Computational Biology** repository! This repository contains Python Jupyter notebooks and scripts designed to teach and explore the intersection of programming and computational biology.
+Welcome to the **Programming for Computational Biology** course repository! This curriculum offers a comprehensive, hands-on journey through scientific computing in modern bioinformatics—from core syntax and sequence mechanics to object-oriented domain modeling, high-throughput file parsers (FASTA/FASTQ/GenBank), publication-grade visualization, programmatic database mining (NCBI Entrez, UniProt, RCSB PDB, KEGG), polite web scraping, and vectorised data science (`numpy`, `pandas`).
 
-## 📁 Repository Structure
+---
 
-The curriculum is divided into **Exercises** for students to practice and **Solutions** for self-assessment.
+## 🧭 Course Blueprint & Continuous Biological Thread
 
-### 📝 Exercises (`Notebooks/Exercises/`)
-- **[Tutorial 1: BioComputing Basics](Notebooks/Exercises/Tutorial_1_BioComputing_Basics.ipynb)** - Fundamental Python concepts applied to basic biological strings (DNA/RNA sequences, GC content, transcription).
-- **[Tutorial 2: Sequence Alignment Basics](Notebooks/Exercises/Tutorial_2_Sequence_Alignment.ipynb)** - Fundamental concepts in alignment scoring matrices, Hamming distances, and dynamic programming basics.
-- **[Tutorial 3: BioComputing Intermediate](Notebooks/Exercises/Tutorial_3_BioComputing_Intermediate.ipynb)** - Intermediate data structures, working with proteomics data, codon translation, and identifying mutations.
-- **[Tutorial 4: FASTA & FASTQ Parsers](Notebooks/Exercises/Tutorial_4_FASTA_FASTQ.ipynb)** - File handling in bioinformatics; building custom parsers and Phred quality score calculators.
-- **[Tutorial 5: Biological Databases](Notebooks/Exercises/Tutorial_5_Biological_Databases.ipynb)** - Fetching and interacting with structural biological data (e.g., Protein Data Bank).
-- **[Tutorial 6: File Handling Part 1](Notebooks/Exercises/Tutorial_6_FileHandling_Part1.ipynb)** - Introduction to working with files in Python.
-- **[Tutorial 7: File Handling Part 2](Notebooks/Exercises/Tutorial_7_FileHandling_Part2.ipynb)** - Advanced file handling techniques for bioinformatics.
-- **[Tutorial 8: Object-Oriented Programming](Notebooks/Exercises/Tutorial_8_OOPs.ipynb)** - Applying OOP concepts to biological data structures.
-- **[Tutorial 9: Data Visualization](Notebooks/Exercises/Tutorial_9_DataVisualization.ipynb)** - Creating plots and charts for biological datasets.
-- **[Tutorial 10: Biological Databases (Advanced)](Notebooks/Exercises/Tutorial_10_BiologicalDB.ipynb)** - Deep dive into database queries and automation.
-- **[Tutorial 11: Web Scraping](Notebooks/Exercises/Tutorial_11_WebScraping.ipynb)** - Extracting data programmatically from bioinformatics web resources.
+A central design pillar of this curriculum is **biological continuity**. Rather than using detached toy problems, students follow the same canonical set of genes throughout the entire semester:
+- **Human TP53** (Tumor protein p53 — master guardian of the genome)
+- **Human INS** (Insulin — preproprotein processing and peptide hormones)
+- **Human HBB** (Hemoglobin subunit beta — genetic variants & structural biology)
+- **E. coli lacZ** (β-galactosidase — classic operon regulation and bacterial genomics)
 
-### 💡 Solutions (`Notebooks/Solutions/`)
-- **[Tutorial 1 Solutions](Notebooks/Solutions/Tutorial_1_BioComputing_Basics_Solutions.ipynb)** - Complete code solutions for the Basics tutorial.
-- **[Tutorial 2 Solutions](Notebooks/Solutions/Tutorial_2_Sequence_Alignment_Solutions.ipynb)** - Detailed explanations and code for alignment scoring.
-- **[Tutorial 3 Solutions](Notebooks/Solutions/Tutorial_3_BioComputing_Intermediate_Solutions.ipynb)** - Complete code solutions for the Intermediate tutorial.
-- **[Tutorial 4 Solutions](Notebooks/Solutions/Tutorial_4_FASTA_FASTQ_Solutions.ipynb)** - Detailed explanations and code for FASTA/FASTQ parsing.
+Students analyze these entities progressively as **character strings** (Module 1), **structured disk files** (Module 2), **custom domain objects** (Module 3), **publication figures** (Module 4), **remote database records** (Module 5), and **matrix entries** (Module 6).
 
-## 🚀 Getting Started
+---
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/meprateekpaul/ProgrammingCB.git
-   cd ProgrammingCB
-   ```
-2. **Install Jupyter Notebook:**
-   ```bash
-   pip install notebook
-   ```
-3. **Run the notebooks:**
-   ```bash
-   jupyter notebook
-   ```
-   Navigate to the `Notebooks/Exercises/` folder to begin!
+## 📚 Curriculum Structure
 
-## ⚠️ Disclaimer  
-The content in this repository is a collection of resources and code compiled from various open sources, research materials, and personal knowledge. It is intended for educational purposes. All credits for original ideas and code snippets go to their respective authors.  
+All modules are structured in `modules/`, with student exercises in the module folder and reference solutions in `solutions/`. Every notebook includes a **one-click Google Colab badge** and self-contained environment setup.
 
-## 👤 Author  
+| Module | Title | Notebooks | Level | Colab Link |
+|---|---|---|---|---|
+| **M00** | **Setup & Orientation** | [M00_Setup_and_Orientation](modules/M00_Setup/M00_Setup_and_Orientation.ipynb) | ★☆☆ | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/M00_Setup/M00_Setup_and_Orientation.ipynb) |
+| **M01** | **Python Basics & Sequences** | [1A: Core Python](modules/M01_Python_Basics/M01A_Core_Python.ipynb) · [1B: Sequence Manipulation](modules/M01_Python_Basics/M01B_Sequence_Manipulation.ipynb) · [1C: ORFs, Exons & Introns](modules/M01_Python_Basics/M01C_ORFs_Exons_Introns.ipynb) · [1D: Practice Problems](modules/M01_Python_Basics/M01D_Practice_Problems.ipynb) · [1E: Enrichment: Alignment](modules/M01_Python_Basics/M01E_Enrichment_Sequence_Alignment.ipynb) | ★★☆ | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/M01_Python_Basics/M01A_Core_Python.ipynb) |
+| **M02** | **File Handling & Biopython** | [2A: Text Files](modules/M02_File_Handling/M02A_Text_Files.ipynb) · [2B: FASTA by Hand & FASTQ](modules/M02_File_Handling/M02B_FASTA_by_Hand.ipynb) · [2C: Biopython SeqIO & GenBank](modules/M02_File_Handling/M02C_Biopython_SeqIO_GenBank.ipynb) | ★★☆ | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/M02_File_Handling/M02A_Text_Files.ipynb) |
+| **M03** | **Object-Oriented Programming** | [3A: Classes & Objects](modules/M03_OOP/M03A_Classes_and_Objects.ipynb) · [3B: Four Pillars & Access Modifiers](modules/M03_OOP/M03B_Four_Pillars_and_Access_Modifiers.ipynb) · [3C: OOP Practice & Mini-Project](modules/M03_OOP/M03C_OOP_Practice_and_Mini_Project.ipynb) | ★★★ | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/M03_OOP/M03A_Classes_and_Objects.ipynb) |
+| **M04** | **Biological Data Visualisation** | [4A: Biological Plots Theory](modules/M04_Visualisation/M04A_Biological_Plots_Theory.ipynb) · [4B: Matplotlib](modules/M04_Visualisation/M04B_Matplotlib.ipynb) · [4C: Seaborn & Styling](modules/M04_Visualisation/M04C_Seaborn_and_Styling.ipynb) | ★★☆ | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/M04_Visualisation/M04A_Biological_Plots_Theory.ipynb) |
+| **M05** | **Databases & Web Scraping** | [5A: NCBI Entrez & PubMed](modules/M05_Databases_and_Scraping/M05A_Entrez_GenBank_PubMed.ipynb) · [5B: UniProt, PDB & KEGG](modules/M05_Databases_and_Scraping/M05B_UniProt_PDB_KEGG.ipynb) · [5C: Best Practices & API Keys](modules/M05_Databases_and_Scraping/M05C_Best_Practices_API_Keys.ipynb) · [5D: Web Scraping Fundamentals](modules/M05_Databases_and_Scraping/M05D_Web_Scraping_Fundamentals.ipynb) · [5E: Web Scraping Homework](modules/M05_Databases_and_Scraping/M05E_Web_Scraping_Homework.ipynb) | ★★★ | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/M05_Databases_and_Scraping/M05A_Entrez_GenBank_PubMed.ipynb) |
+| **M06** | **os, NumPy & pandas** | [M06_Assignment (Graded Notebook)](modules/M06_os_NumPy_pandas/M06_Assignment.ipynb) | ★★★ | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/M06_os_NumPy_pandas/M06_Assignment.ipynb) |
+| **Capstone** | **Automated Gene Report** | [Capstone_Gene_Report_Pipeline](modules/Capstone/Capstone_Gene_Report_Pipeline.ipynb) | ★★★ | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/meprateekpaul/ProgrammingCB/blob/main/modules/Capstone/Capstone_Gene_Report_Pipeline.ipynb) |
+
+---
+
+## ⚡ Quick Start
+
+### 1. Local Setup with Conda (Recommended)
+```bash
+git clone https://github.com/meprateekpaul/ProgrammingCB.git
+cd ProgrammingCB
+
+# Create and activate environment
+conda env create -f environment.yml
+conda activate pcb
+
+# Launch JupyterLab
+jupyter lab
+```
+
+### 2. Local Setup with Python Virtual Environment
+```bash
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+jupyter lab
+```
+
+### 3. Google Colab
+Click any of the **Open in Colab** badges in the table above. The setup cell at the top of each notebook automatically clones the repository and mounts required datasets in `data/`.
+
+---
+
+## 📂 Repository Organization
+
+```text
+ProgrammingCB/
+├── README.md                     # Landing page: course overview & module directory
+├── COURSE_PLAN.md                # Comprehensive course blueprint & authoring guide
+├── SYLLABUS.md                   # Student-facing course syllabus
+├── LICENSE                       # MIT License
+├── requirements.txt              # Standard pip dependencies
+├── environment.yml               # Conda environment definition
+├── .gitignore                    # Ignores outputs/, caches, and credentials
+│
+├── data/                         # Crated, read-only biological datasets
+│   ├── README.md                 # Full provenance and accession metadata
+│   ├── build_data.py             # Reproducible data generation & download script
+│   ├── sequences/                # FASTA, FASTQ, and raw sequence files
+│   ├── genbank/                  # RefSeq GenBank and GenPept files
+│   ├── structures/               # PDB and mmCIF coordinate models
+│   ├── tables/                   # Gene annotation, counts, and expression tables
+│   └── html/                     # Mock pages for offline web scraping practice
+│
+├── modules/                      # Curriculum core modules
+│   ├── M00_Setup/
+│   ├── M01_Python_Basics/
+│   ├── M02_File_Handling/
+│   ├── M03_OOP/
+│   ├── M04_Visualisation/
+│   ├── M05_Databases_and_Scraping/
+│   ├── M06_os_NumPy_pandas/
+│   └── Capstone/
+│
+├── assessments/                  # Quizzes & grading rubrics
+│   ├── quizzes/                  # Quiz 1 and Quiz 2 question papers
+│   └── rubrics/                  # Rubrics for Labs, Homework, and Capstone
+│
+├── cheatsheets/                  # Quick-reference summary cards for Modules 1–6
+│
+└── outputs/                      # (Git-ignored) Target directory for student code exports
+```
+
+---
+
+## 📊 Assessments & Grading
+Detailed assessment information, quizzes, and rubrics are available in the [assessments/](assessments/) directory:
+- [Student Syllabus](SYLLABUS.md)
+- [Quiz 1: Python Basics & File Handling](assessments/quizzes/Quiz_1.md)
+- [Quiz 2: OOP & Visualisation](assessments/quizzes/Quiz_2.md)
+- [Weekly Lab Rubric](assessments/rubrics/Rubric_Lab.md)
+- [Web Scraping Homework Rubric](assessments/rubrics/Rubric_Homework.md)
+- [Capstone Project Rubric](assessments/rubrics/Rubric_Capstone.md)
+
+---
+
+## 👤 Author & Maintainer
 **Prateek Paul**  
-- ✉️ Email: prateekp@iiitd.ac.in  
-- 💼 LinkedIn: [linkedin.com/in/prateekpaulpro/](https://linkedin.com/in/prateekpaulpro/)  
+- 🏛️ PhD Researcher in Computational Biology, IIIT Delhi  
+- ✉️ Email: `prateekp@iiitd.ac.in`  
+- 🌐 Portfolio: [meprateekpaul.github.io](https://meprateekpaul.github.io/)  
+- 💼 LinkedIn: [linkedin.com/in/prateekpaulpro](https://www.linkedin.com/in/prateekpaulpro/)  
+- 🐙 GitHub: [@meprateekpaul](https://github.com/meprateekpaul)
 
-## 📄 License  
-This repository is shared under the [MIT License](LICENSE). Please feel free to use and modify the content with proper attribution.  
+---
 
----  
-*Happy coding and exploring computational biology!*
+## 📄 License
+This repository and its educational materials are distributed under the [MIT License](LICENSE).

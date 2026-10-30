@@ -9,8 +9,8 @@
 
 1. Given `seq = "ATGCGATCG"`, what is the result of `seq[1:7:2]`?
    - A) `"TGC"`
-   - B) `"TCC"`
-   - C) `"TGC"`
+   - B) `"TCA"`
+   - C) `"TGA"`
    - D) `"TCG"`
 
 2. Which built-in function or method creates a one-to-one translation table suitable for `str.translate()`?
